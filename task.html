@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Page</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Task Page</h1>
+        </header>
+
+        <main>
+            <div class="task-info">
+                <h2>Dynamic Data Display</h2>
+                <div class="data-section">
+                    <h3>User Information:</h3>
+                    <p><strong>Name:</strong> {{ user_name }}</p>
+                    <p><strong>Role:</strong> {{ user_role }}</p>
+                    <p><strong>Current Time:</strong> {{ current_time }}</p>
+                </div>
+
+                <div class="task-list">
+                    <h3>Tasks:</h3>
+                    <ul>
+                        {% for task in tasks %}
+                        <li class="task-item">
+                            <span class="task-name">{{ task.name }}</span>
+                            <span class="task-status {{ task.status }}">{{ task.status }}</span>
+                        </li>
+                        {% empty %}
+                        <li>No tasks available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="stats">
+                    <h3>Statistics:</h3>
+                    <p>Total Tasks: {{ total_tasks }}</p>
+                    <p>Completed Tasks: {{ completed_tasks }}</p>
+                    <p>Pending Tasks: {{ pending_tasks }}</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Task Management System</p>
+        </footer>
+    </div>
+</body>
+</html>
